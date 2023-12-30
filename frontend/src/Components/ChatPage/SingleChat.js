@@ -9,7 +9,7 @@ import ScrollableChat from './ScrollableChat';
 import io from 'socket.io-client';
 import ChatLogo from '../../images/ChatLogo.png';
 
-const ENDPOINT = "http://localhost:4000";
+const ENDPOINT = "https://flash-chat-app-huty.onrender.com";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
