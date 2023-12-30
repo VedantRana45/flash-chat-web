@@ -29,7 +29,7 @@ const UpdateUser = () => {
                 status: "warning",
                 duration: 5000,
                 isClosable: true,
-                position: "top-left",
+                position: "top-right",
             });
             return;
         }
@@ -61,7 +61,7 @@ const UpdateUser = () => {
                         status: "error",
                         duration: 5000,
                         isClosable: true,
-                        position: "top-left",
+                        position: "top-right",
                     });
                     setLoading(false);
                 })
@@ -71,7 +71,7 @@ const UpdateUser = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "top-left",
+                position: "top-right",
             });
             setLoading(false);
             return;
@@ -116,7 +116,7 @@ const UpdateUser = () => {
                 status: "success",
                 duration: 5000,
                 isClosable: true,
-                position: "top-left",
+                position: "top-right",
             })
 
         } catch (error) {
@@ -125,7 +125,7 @@ const UpdateUser = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "top-left",
+                position: "top-right",
             })
         }
     }

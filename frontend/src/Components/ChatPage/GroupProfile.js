@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChatState } from '../../ContextApi/ChatProvider'
 import { Avatar, Box, Button, FormControl, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useDisclosure, useToast } from '@chakra-ui/react'
 import SelectedUserBadge from './SelectedUserBadge';
@@ -16,6 +16,13 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
     const [renameloading, setRenameLoading] = useState(false);
     const toast = useToast();
 
+    useEffect(() => {
+        if (!isOpen) {
+            setSearchResult([]);
+            setSearch('');
+            setGroupChatName('');
+        }
+    }, [isOpen]);
 
     const handleAddUser = async (userToAdd) => {
         if (selectedChat.users.find((u) => u._id === userToAdd._id)) {
@@ -24,7 +31,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
             return;
         }
@@ -35,7 +42,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
             return;
         }
@@ -59,6 +66,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
             setSelectedChat(data);
             setFetchAgain(!fetchAgain);
             setLoading(false);
+            setSearchResult([]);
         } catch (error) {
             toast({
                 title: "Error Occured!",
@@ -66,7 +74,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
             setLoading(false);
         }
@@ -80,7 +88,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
             return;
         }
@@ -113,7 +121,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
             setLoading(false);
         }
@@ -148,7 +156,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
-                position: 'top-left',
+                position: 'top-right',
             });
 
         } catch (error) {
@@ -159,7 +167,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
             setRenameLoading(false);
         }
@@ -190,7 +198,7 @@ const GroupProfile = ({ fetchAgain, setFetchAgain, fetchAllMessages }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom-left",
+                position: "top-right",
             });
             setLoading(false);
         }

@@ -1,5 +1,5 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, Spinner, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
@@ -12,11 +12,19 @@ const SideDrawer = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const btnRef = useRef()
     const toast = useToast();
-    const { user, setSelectedChat, selectedChat, chats, setChats } = ChatState();
+    const { user, setSelectedChat, chats, setChats } = ChatState();
     const [loading, setLoading] = useState(false);
     const [loadingChat, setLoadingChat] = useState(false)
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+
+
+    useEffect(() => {
+        if (!isOpen) {
+            setSearchQuery('');
+            setSearchResults([]);
+        }
+    }, [isOpen]);
 
     const searchUsers = async () => {
         if (!searchQuery) {
@@ -81,7 +89,7 @@ const SideDrawer = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom-left",
+                position: "top-right",
             });
         }
     }

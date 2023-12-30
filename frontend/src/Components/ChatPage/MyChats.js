@@ -28,7 +28,7 @@ const MyChats = ({ fetchAgain }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom-left",
+                position: "top-right",
             });
         }
     };
@@ -67,8 +67,7 @@ const MyChats = ({ fetchAgain }) => {
                 fontSize={{ base: "28px", md: "30px" }}
                 textAlign="center"
             >
-                My Chats
-
+                {`${user.firstName} ${user.lastName}`}
             </Box>
             <Box
                 d="flex"

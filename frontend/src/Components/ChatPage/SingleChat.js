@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ChatState } from '../../ContextApi/ChatProvider'
-import { Box, FormControl, IconButton, Image, Input, Spinner, Text, useToast } from '@chakra-ui/react';
+import { Box, FormControl, IconButton, Image, Input, Spinner, useToast } from '@chakra-ui/react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FriendsProfile from './FriendsProfile';
 import GroupProfile from './GroupProfile';
@@ -15,12 +15,11 @@ var socket, selectedChatCompare;
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     const { user, selectedChat, setSelectedChat } = ChatState();
-    // console.log(selectedChat);
 
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState('');
     const [loading, setLoading] = useState(false)
-    const [socketConnected, setSocketConnected] = useState(false)
+    const [, setSocketConnected] = useState(false)
     const toast = useToast();
 
     useEffect(() => {
@@ -72,7 +71,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
         }
     }
@@ -107,7 +106,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     status: "error",
                     duration: 5000,
                     isClosable: true,
-                    position: "bottom",
+                    position: "top-right",
                 });
             }
         }
@@ -122,7 +121,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         <>
             {selectedChat ? (
                 <>
-                    {/* chat title */}
                     <Box
                         fontSize={{ base: "28px", md: "30px" }}
                         pb={3}

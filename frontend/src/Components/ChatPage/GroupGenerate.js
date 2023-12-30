@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import { Avatar, Box, Button, FormControl, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
 import { ChatState } from '../../ContextApi/ChatProvider';
 import SearchListItems from './SearchListItems';
 import axios from 'axios';
@@ -13,7 +13,7 @@ const GroupGenerate = () => {
     const { user, chats, setChats } = ChatState();
     const [groupName, setGroupName] = useState('')
     const [selectedUsers, setSelectedUsers] = useState([]);
-    const [search, setSearch] = useState('')
+    const [, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -58,7 +58,7 @@ const GroupGenerate = () => {
                 status: "warning",
                 duration: 5000,
                 isClosable: true,
-                position: "top",
+                position: "top-right",
             });
             return;
         }
@@ -84,8 +84,11 @@ const GroupGenerate = () => {
                 status: "success",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
+            setGroupName('');
+            setSelectedUsers([]);
+            setSearchResults([]);
         } catch (error) {
             toast({
                 title: "Failed to Create the Chat!",
@@ -93,7 +96,7 @@ const GroupGenerate = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top-right",
             });
         }
     }

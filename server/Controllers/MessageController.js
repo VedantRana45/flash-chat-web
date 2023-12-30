@@ -7,7 +7,7 @@ const sendMessage = expressAsyncHandler(async (req, res) => {
     const { content, chatId } = req.body;
 
     if (!content || !chatId) {
-        console.log("message Data not found");
+        // console.log("message Data not found");
         return res.status(400).send({ message: "message Data not found" })
     }
 
@@ -21,14 +21,14 @@ const sendMessage = expressAsyncHandler(async (req, res) => {
         var message = await Message.create(newMessage);
 
         message = await message.populate("sender", "firstName lastName pic");
-        // console.log('\n1. ' + message);
+
         message = await message.populate("chat");
-        // console.log('\n2. ' + message);
+
         message = await User.populate(message, {
             path: "chat.users",
             select: "firstName lastName pic email",
         });
-        // console.log('\n3. ' + message);
+
 
         await Chat.findByIdAndUpdate(req.body.chatId, {
             latestMessage: message,
