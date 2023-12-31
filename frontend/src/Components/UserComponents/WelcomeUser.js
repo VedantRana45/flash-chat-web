@@ -44,7 +44,7 @@ const WelcomeUser = () => {
                 height: '100vh',
                 backgroundColor: '#191717'
             }}>
-            <Box sx={{ width: '30%', boxShadow: 2, height: '90%', background: '#F1EFEF' }}>
+            <Box sx={{ width: '27rem', boxShadow: 2, height: '90%', background: '#F1EFEF' }} >
                 <Tabs
                     value={value}
                     onChange={handleChange}

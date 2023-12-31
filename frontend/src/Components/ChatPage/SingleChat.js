@@ -10,6 +10,10 @@ import io from 'socket.io-client';
 import ChatLogo from '../../images/ChatLogo.png';
 
 const ENDPOINT = "https://flash-chat-app-huty.onrender.com";
+
+// for local host 
+// const ENDPOINT = "http://localhost:4000";
+
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
